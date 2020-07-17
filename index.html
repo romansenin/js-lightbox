@@ -3,12 +3,55 @@
   <head>
     <title></title>
     <meta charset="UTF-8" />
+
+    <style>
+      #lightbox_container {
+        position: fixed;
+        text-align: center;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+
+      #overlay {
+        background: rgba(33, 33, 33, 0.8);
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+      }
+
+      #lightbox {
+        width: 400px;
+        height: 300px;
+        background-color: #f8f7f3;
+        border-radius: 5px;
+        padding: 20px;
+
+        position: relative;
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      #hide {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <button id="show">Show lightbox</button>
-    <div id="lightbox">
-      <div id="hide">[hide]</div>
-      Lightbox content
+    <div id="lightbox_container">
+      <div id="overlay"></div>
+      <div id="lightbox">
+        <div id="hide">[hide]</div>
+        Lightbox content
+      </div>
     </div>
     <script>
       /*
@@ -18,7 +61,7 @@
         - should hide when people click outside it
       */
 
-      const lightbox = document.getElementById("lightbox");
+      const lightbox = document.getElementById("lightbox_container");
 
       function showLightbox() {
         lightbox.style.display = "block";
@@ -30,6 +73,8 @@
 
       document.getElementById("show").onclick = showLightbox;
       document.getElementById("hide").onclick = hideLightbox;
+
+      document.getElementById("overlay").onclick = hideLightbox;
     </script>
   </body>
 </html>
